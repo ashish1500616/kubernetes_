@@ -1,0 +1,18 @@
+apiVersion: v1 # Mandatory
+kind: Pod # Mandatory
+metadata: # Information under - does not control how pod behaves. 
+  name: db
+  labels:
+    type: db
+    vendor : MongoLabs
+spec:
+  containers: # We can define more than one containers.
+  - name: db
+    image: mongo:3.3
+    command: ["mongod"] # Command that should be executed when the container starts.
+    args: ["--rest", "--httpinterface"] #Set of arguments.
+    
+
+
+# Command to create the Pod.
+# kuebctl create -f db.yml
