@@ -44,3 +44,11 @@ spec:
 # kebectl  get rs
 # kubectl get pods
 # kubectl describe -f go_demo.yml
+
+# ----------------------------------------------------------------
+
+# Deleting ReplicaSet Without deleting the other (Pods) .
+
+# kubectl delete -f go_demo.yml --cascade=false
+
+# ----------------------------------------------------------------
