@@ -1,0 +1,7 @@
+What is ReplicaSet ?
+
+    ReplicaSet is a controller, kubernetes object that function as to ensure that a specified no. of replicas of a pod matches the actual state all the time it
+
+ReplicaSet Features : -
+    - Fault Tolerance. 
+    - Self Healing Mechanism.
