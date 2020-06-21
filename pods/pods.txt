@@ -1,0 +1,18 @@
+What is a Pod?
+
+A Pod is a way to represent a running cluster .
+
+----------------------------------------------------------------
+Dirty Way To Run a Pod .
+
+kubectl run db --image mongo \ --generator "run-pod/v1"
+
+kubectl get pod
+
+----------------------------------------------------------------
+
+Delete a Pod .
+
+kubectl delete pod db
+
+----------------------------------------------------------------

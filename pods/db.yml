@@ -16,3 +16,7 @@ spec:
 
 # Command to create the Pod.
 # kuebctl create -f db.yml
+# kubectl get pods -o wide 
+# kubectl get pods -o json
+# kubectl get pods - yaml 
+# kubectl describe pod db 
