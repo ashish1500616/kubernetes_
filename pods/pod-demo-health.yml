@@ -1,0 +1,33 @@
+# Kubernetes Probs .
+#  1. Liveness Probe - "LivenessProbe" can be used to confirm whether a container should be running. If the probe fails, Kubernetes will kill the container and apply restart policy which defaults to "Always".
+
+# 2. Readiness Probe -
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: go-demo-2
+  labels:
+    type: stack
+spec:
+  containers:
+    - name: db
+      image: mongo:3.3
+    - name: api
+      image: vfarcic/go-demo-2
+      env:
+        - name: DB
+          value: localhost
+      livenessProbe:
+        httpGet:
+          path: /this/path/does/not/exist
+          port: 8080
+        initialDelaySeconds: 5
+        timeoutSeconds: 2 # Defaults to 1
+        periodSeconds: 5 # Defaults to 10
+        failureThreshold: 1 # Defaults to 3
+
+# Pods Are (Almost) Useless (By Themselves) #
+# Pods are fundamental building blocks in Kubernetes. In most cases, we will not create Pods directly. Instead, we’ll use higher level constructs like Controllers.
+
+# https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#probe-v1-core
