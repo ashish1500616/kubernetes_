@@ -1,0 +1,46 @@
+apiVersion: apps/v1 # Mandatory.
+kind: ReplicaSet # Mandatory.
+metadata: # Mandatory.
+  name: go-demo
+spec:
+  replicas: 2 # Desired number of replicas of the Pod.
+  selector: # Which pods should be included in the replica set. ReplicaSet and Pods are decoupled .
+    matchLabels:
+      type: backend
+      service : go-demo
+  template:
+    metadata:
+      labels:
+        type: backend
+        service: go-demo
+        db: mongo
+        language: go
+    spec: # Mandatory. 
+      containers:
+      - name: go-demo
+        image: mongo:3.3
+      - name: api
+        image: vfarcic/go-demo
+        env:
+        - name: DB
+          value: localhost
+        livenessProbe:
+          httpGet:
+            path: /demo/hello
+            port : 8080
+
+
+# What does it mean by replicaset and pods are decoupled ?
+# If Pods that matched the selector already exist , Replicaset will do nothing 
+# If it does not replicaSet will create the pods to match the values of replicaFiel.
+
+# ----------------------------------------------------------------
+
+# spec.template.metadata.labels === spec.selector.matchLabels
+
+# --------------------------------
+
+# kubectl create -f go_demo.yml
+# kebectl  get rs
+# kubectl get pods
+# kubectl describe -f go_demo.yml
