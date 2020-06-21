@@ -52,3 +52,7 @@ spec:
 # kubectl delete -f go_demo.yml --cascade=false
 
 # ----------------------------------------------------------------
+
+# Kubectl Show Labels. 
+
+# kubectl get pods --show-labels
