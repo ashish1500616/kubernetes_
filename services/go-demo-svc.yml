@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-demo-svc
+spec:
+  type: NodePort # Type of the service. - NodePort - svc will be available for both within the cluster as well as from outside the cluster . , Default - ClusterIp.
+  ports:
+  - port: 28017 # The request to be forwarded to the pods on this port.
+    nodePort : 30001 # Instead of svc exposing a random port , we set it to explicit value of 30001. We will forward requests to this port on local machine.
+    protocol: TCP # TCP is the default protocol .
+  selector:
+    type: backend
+    service : go-demo-svc
